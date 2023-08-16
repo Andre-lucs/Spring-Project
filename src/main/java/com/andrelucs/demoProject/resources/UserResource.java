@@ -30,4 +30,10 @@ public class UserResource {
 		User u = service.findById(id);
 		return ResponseEntity.ok().body(u);
 	}
+
+	@GetMapping(value = "/phones")
+	public ResponseEntity<List<String>> findAllPhones(){
+		List<String> phones = service.findAllPhones();
+		return ResponseEntity.ok().body(phones);
+	}
 }

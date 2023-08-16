@@ -1,13 +1,12 @@
 package com.andrelucs.demoProject.entities;
 
-import java.io.Serializable;
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 
 @Entity
@@ -22,7 +21,11 @@ public class User implements Serializable{
 	private String email;
 	private String phone;
 	private String password;
-	
+	@JsonIgnore
+	@OneToMany(mappedBy = "client")
+	private List<Order> orders = new ArrayList<>();
+
+
 	public User() {}
 
 	public User(Long id, String name, String email, String phone, String password) {
@@ -74,6 +77,10 @@ public class User implements Serializable{
 		this.password = password;
 	}
 
+
+	public List<Order> getOrders() {
+		return orders;
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

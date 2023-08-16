@@ -1,5 +1,6 @@
 package com.andrelucs.demoProject.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,15 @@ public class UserService {
     public User findById(Long id){
         Optional<User> u = repository.findById(id);
         return u.get();
+    }
+
+    public List<String> findAllPhones() {
+        List<User> userList = findAll();
+        List<String> phones = new ArrayList<>();
+        for(User u : userList){
+            phones.add(u.getPhone());
+        }
+        return phones;
     }
 
 }
