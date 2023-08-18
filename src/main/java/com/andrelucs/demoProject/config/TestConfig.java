@@ -1,14 +1,8 @@
 package com.andrelucs.demoProject.config;
 
-import com.andrelucs.demoProject.entities.Order;
-import com.andrelucs.demoProject.entities.Product;
-import com.andrelucs.demoProject.entities.User;
-import com.andrelucs.demoProject.entities.Category;
+import com.andrelucs.demoProject.entities.*;
 import com.andrelucs.demoProject.entities.enums.OrderStatus;
-import com.andrelucs.demoProject.repositories.CategoryRepository;
-import com.andrelucs.demoProject.repositories.OrderRepository;
-import com.andrelucs.demoProject.repositories.ProductRepository;
-import com.andrelucs.demoProject.repositories.UserRepository;
+import com.andrelucs.demoProject.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +23,8 @@ public class TestConfig implements CommandLineRunner{
     private CategoryRepository categoryRepository;
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private PaymentRepository paymentRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -62,6 +58,12 @@ public class TestConfig implements CommandLineRunner{
         productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 
         userRepository.saveAll(Arrays.asList(u1,u2));
+
+        orderRepository.saveAll(Arrays.asList(o1,o2,o3));
+        Payment pay1 = new Payment(null, Instant.parse("2019-06-20T19:53:07Z"), o1);
+        Payment pay2 = new Payment(null, Instant.parse("2019-06-20T19:53:07Z"), o3);
+
+        paymentRepository.saveAll(Arrays.asList(pay1, pay2));
         orderRepository.saveAll(Arrays.asList(o1,o2,o3));
     }
 }
