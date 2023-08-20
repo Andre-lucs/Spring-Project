@@ -20,7 +20,7 @@ public class Payment implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
     @OneToOne
-    @JoinColumn(name = "order_id")
+    @MapsId
     @JsonIgnore
     private Order order;
 
