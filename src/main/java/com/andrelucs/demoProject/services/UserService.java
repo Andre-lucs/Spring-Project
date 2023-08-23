@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.andrelucs.demoProject.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class UserService {
 
     public User findById(Long id){
         Optional<User> u = repository.findById(id);
-        return u.get();
+        return u.orElseThrow(()-> new ResourceNotFoundException(id));
     }
 
     public List<String> findAllPhones() {
