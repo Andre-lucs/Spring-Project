@@ -64,11 +64,8 @@ public class UserService {
     }
 
     private void updateData(User entity, User obj){
-        if(obj.getName() != null)
-            entity.setName(obj.getName());
-        if(obj.getEmail() != null)
-            entity.setEmail(obj.getEmail());
-        if(obj.getPhone() != null)
-            entity.setPhone(obj.getPhone());
+        entity.setName(obj.getName());
+        entity.setEmail(obj.getEmail());
+        entity.setPhone(obj.getPhone());
     }
 }
