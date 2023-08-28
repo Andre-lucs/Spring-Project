@@ -3,7 +3,6 @@ package com.andrelucs.demoProject.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -39,7 +38,18 @@ public class Product implements Serializable {
         this.price = price;
         this.imgUrl = imgUrl;
     }
-
+/*
+	public Product(Long id, String name, String description, Double price, String imgUrl, Set<Category> categories) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imgUrl = imgUrl;
+		for(Category c : categories){
+			this.categories.add(c);
+		}
+    }
+*/
     public Long getId() {
         return id;
     }
@@ -83,6 +93,7 @@ public class Product implements Serializable {
     public Set<Category> getCategories() {
         return categories;
     }
+
     @JsonIgnore
     public Set<Order> getOrders(){
         return items.stream().map(OrderItem::getOrder).collect(Collectors.toSet());
