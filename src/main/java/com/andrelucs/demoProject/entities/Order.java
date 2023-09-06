@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -58,7 +59,7 @@ public class Order implements Serializable {
     }
 
     public OrderStatus getOrderStatus() {
-        return OrderStatus.valueOf(this.orderStatus);
+        return OrderStatus.valueByCode(this.orderStatus).orElse(null);
     }
 
     public void setOrderStatus(OrderStatus orderStatus){
